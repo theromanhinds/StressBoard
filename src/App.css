@@ -1,38 +1,82 @@
 .App {
-  text-align: center;
+  max-width: 100vw;
+  max-height: 100vh;
+  overflow: hidden;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.Board {
+  width: 100vw;
+    height: 1000vh;
+    background-color: rgb(235, 227, 227);
+
+    justify-content: center;
+    align-items: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.BoardAreaDiv {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  height: auto;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  flex-direction: column;
 }
 
-.App-link {
-  color: #61dafb;
+.BoardArea {
+  min-height: 75vh;
+  max-height: 75vh;
+  min-width: 80vw;
+  margin: 0;
+
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-style: dashed;
+  background-color: bisque;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.StressCardsRange {
+  min-height: 75vh;
+  max-height: 75vh;
+  min-width: 80vw;
+  margin: 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.CardRange {
+  position: absolute;
+  height: 75vh;
+  width: 75vw;
+}
+
+.StressCard {
+  position: absolute;
+  top: 50%;
+  left: 50%; 
+  transform: translate(-50%, -50%);
+  padding: 30px;
+
+  border-style: solid;
+  border-radius: 10px;
+
+  background-color: rgb(245, 189, 4);
+  z-index: 0;
+}
+
+.NavBarDiv {
+  top: 0;
+  height: 12vh;
+  display: flex;
+  background-color: rgb(228, 214, 191);
+  text-align: center;
+  justify-content: center;
+}
+
+.SignButton {
+  
 }
