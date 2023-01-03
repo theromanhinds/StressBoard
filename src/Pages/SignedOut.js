@@ -1,11 +1,11 @@
 import React from 'react'
 
-function SignedOut() {
+function SignedOut({signHandler}) {
     
   return (
     <div>
         <h1>You are signed out! Sign in below:</h1>
-        <button>Sign In</button>
+        <button onClick={() => signHandler()}>Sign In</button>
     </div>
   )
 }

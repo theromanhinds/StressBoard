@@ -5,16 +5,22 @@ import Draggable from 'react-draggable';
 
 import '../App.css'
 
-function StressCards({cards, addCard, updateSelected}) {
+function StressCards({cards, 
+  addCard, updateSelected, handleChange, 
+  handleFocus, handleBlur}) {
 
   return (
-    <div className='StressCardsRange' /*onClick={() => addCard()}*/>
+    <div className='StressCardsRange' onClick={(event) => addCard(event)}>
         {cards.map((card) => (
         <StressCard 
           text={card.text} 
           selected={card.selected}
           id={card.id}
-          updateSelected={updateSelected}/>
+          typing={card.typing}
+          updateSelected={updateSelected}
+          handleChange={handleChange}
+          handleFocus={handleFocus}
+          handleBlur={handleBlur}/>
         ))}
     </div>
   )

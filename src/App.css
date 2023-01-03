@@ -61,8 +61,14 @@
 
   background-color: rgb(245, 189, 4);
   z-index: 0;
+}
 
-  
+.Input {
+  resize: none;
+  overflow: hidden;
+  background-color: transparent;
+  border: none;
+  outline: none;
 }
 
 .NavBarDiv {
