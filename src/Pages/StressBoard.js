@@ -13,26 +13,51 @@ function StressBoard() {
   //dynamic array of StressCard data
   const [cards, setCards] = useState([
     {
+      id: nanoid(),
       text: "I'm a new Stress!",
+      selected: false,
+    },
+    {
+      id: nanoid(),
+      text: "I'm another Stress!",
+      selected: false,
+    },
+    {
+      id: nanoid(),
+      text: "I'm your biggest Stress!",
+      selected: false,
     }
   ])
 
+  function updateSelected(id) {
+    console.log(`${id} is selected`);
+
+    setCards(cards.map(card => {
+      if (card.id === id) {
+        return {...card, selected: true};
+      } else {
+        return {...card, selected: false};
+      }
+    }))
+  }
+
   //initializes new StressCards array and replaces state
   function addCard() {
-    const newCard = {
-      text: "I'm a new Stress!"
-    }
-    const newCards = [...cards, newCard];
-    setCards(newCards);
+    console.log("Board Clicked!");
+    // const newCard = {
+    //   text: "I'm a new Stress!",
+    //   selected: false
+    // }
+    // const newCards = [...cards, newCard];
+    // setCards(newCards);
   }
 
   return (
     <div className='Board'>
         <NavBar/>
         <div className='BoardAreaDiv'>
-          <div className='BoardArea' onClick={addCard}>
-            <StressCards cards={cards}/>
-          </div>
+          <StressCards addCard={addCard} cards={cards}
+          updateSelected={updateSelected}/>
         </div>
     </div>
   )
