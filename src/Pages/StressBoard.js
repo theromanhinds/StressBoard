@@ -8,7 +8,7 @@ import { nanoid } from 'nanoid';
 import '../App.css';
 
 //renders the main page component the user uses
-function StressBoard({signHandler}) {
+function StressBoard({signOut}) {
 
   //dynamic array of StressCard data
   const [cards, setCards] = useState([
@@ -99,7 +99,7 @@ function StressBoard({signHandler}) {
 
   return (
     <div className='Board'>
-        <NavBar signHandler={signHandler}/>
+        <NavBar signOut={signOut}/>
         <div className='BoardAreaDiv'>
           <StressCards addCard={addCard} cards={cards}
           updateSelected={updateSelected} handleChange={handleChange}

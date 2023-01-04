@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-function SignedOut({signHandler}) {
-    
+function SignedOut({signInWithGoogle}) {
+  
   return (
     <div>
         <h1>You are signed out! Sign in below:</h1>
-        <button onClick={() => signHandler()}>Sign In</button>
+        <button onClick={() => signInWithGoogle()}>Sign In</button>
     </div>
   )
 }

@@ -1,11 +1,11 @@
 import React from 'react'
 import '../App.css'
 
-function NavBar({signHandler}) {
+function NavBar({signOut}) {
   return (
     <div className='NavBarDiv'>
         <h1>NavBar</h1>
-        <button className='SignButton' onClick={() => signHandler()}>Sign Out</button>
+        <button className='SignButton' onClick={() => signOut()}>Sign Out</button>
     </div>
   )
 }

@@ -1,20 +1,38 @@
-import { useState } from 'react';
+import { React, useEffect, useState } from 'react';
 import './App.css';
 
 import StressBoard from './Pages/StressBoard';
 import SignedOut from './Pages/SignedOut';
 
+import { auth, provider } from './FirebaseConfig.js';
+import { signInWithPopup } from 'firebase/auth';
+
+
 function App() {
 
-  const [signedIn, setSignedIn] = useState(true);
+  const [user, setUser] = useState('');
 
-  function signHandler() {
-    setSignedIn(current => !current);
+  function signInWithGoogle() {
+    signInWithPopup(auth, provider).then((result) => {
+      setUser(result);
+      localStorage.setItem("user", result);
+    }).catch((error) => {
+      console.log(error);
+    })
+  }
+
+  useEffect(() => {
+    setUser(localStorage.getItem("user"));
+  })
+
+  function signOut() {
+    localStorage.clear();
+    window.location.reload();
   }
 
   return (
     <div className="App">
-      {signedIn ? <StressBoard signHandler={signHandler}/> : <SignedOut signHandler={signHandler}/>}
+      {user ? <StressBoard signOut={signOut}/> : <SignedOut signInWithGoogle={signInWithGoogle}/>}
     </div>
     
   );
