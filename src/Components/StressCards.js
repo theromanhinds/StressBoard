@@ -1,26 +1,25 @@
 import React from 'react'
 import StressCard from './StressCard'
-import Draggable from 'react-draggable';
-
 
 import '../App.css'
 
-function StressCards({cards, updateSelected, handleChange, 
-  handleFocus, handleBlur, deselect}) {
+function StressCards({cards, handleChange, handleBlur, enableTyping, completeCard, deleteCard}) {
 
   return (
-    <div className='StressCardsRange' onClick={(event) => deselect(event)}>
-        {cards.map((card) => (
-        <StressCard 
-          text={card.text} 
-          selected={card.selected}
-          id={card.id}
-          typing={card.typing}
-          updateSelected={updateSelected}
-          handleChange={handleChange}
-          handleFocus={handleFocus}
-          handleBlur={handleBlur}/>
-        ))}
+    <div className='StressCardsRange'>
+
+      {cards.map((card) => (
+        <StressCard text={card.text} 
+        id={card.id}
+        completed={card.completed}
+        typing={card.typing}
+        handleChange={handleChange}
+        handleBlur={handleBlur}
+        enableTyping = {enableTyping}
+        completeCard={completeCard}
+        deleteCard={deleteCard}/>
+      ))}
+
     </div>
   )
 }

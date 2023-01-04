@@ -5,9 +5,9 @@ function NavBar({signOut, addCard}) {
 
   return (
     <div className='NavBarDiv'>
-        <h1>NavBar</h1>
-        <button onClick={() => addCard()}>Add Stress</button>
-        <button className='SignButton' onClick={() => signOut()}>Sign Out</button>
+      <button onClick={() => addCard()}>Add Stress</button>
+      <img className='Logo' src="/StessBoardLogo.png" alt="StressBoard Logo"/>
+      <button className='SignButton' onClick={() => signOut()}>Sign Out</button>
     </div>
   )
 }

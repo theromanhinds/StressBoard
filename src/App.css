@@ -12,7 +12,7 @@
 
   width: 100vw;
   height: 100vh;
-  background-color: rgb(235, 227, 227);
+  background-color: #EBE7DB;
 }
 
 .BoardAreaDiv {
@@ -39,8 +39,8 @@
   position: relative;
   justify-content: center;
   align-items: center;
-  border-style: dashed;
-  background-color: bisque;
+  background-color: #EFE3C0;
+  border-bottom: 3px solid #000000;
 }
 
 .CardRange {
@@ -50,6 +50,8 @@
 }
 
 .StressCard {
+  width: 10%;
+  height: 6%;
   position: absolute;
   top: 50%;
   left: 50%; 
@@ -57,27 +59,65 @@
   padding: 30px;
 
   border-style: solid;
-  border-radius: 10px;
+  border-radius: 15px;
+  border-color: #000000;
 
-  background-color: rgb(245, 189, 4);
+  background-color: #FFB512;
   z-index: 0;
+
+  display: flex;
+  align-items: center;
+
 }
 
 .Input {
   resize: none;
-  overflow: hidden;
+  position: fixed;
+  left: 2.5px;
+  top: 2.5px;
+  
+  /* overflow: hidden; */
   background-color: transparent;
-  border: none;
-  outline: none;
+  /* border: none;
+  outline: none; */
+  font-size: 16px;
+  width: 80%;
+  height: 90%;
+  
+}
+
+.DeleteButton {
+  position: absolute;
+  right: 2.5%;
+  top: 2.5%;
+  height: 20px;
+  width: 20px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.CompleteButton {
+  position: absolute;
+  right: 2.5%;
+  bottom: 2.5%;
+  height: 20px;
+  width: 20px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .NavBarDiv {
   top: 0;
   height: 12vh;
   display: flex;
-  background-color: rgb(228, 214, 191);
+  background-color: #EBE7DB;
   text-align: center;
   justify-content: space-around;
+  border-bottom: 3px solid #000000;
 }
 
 .SignButton {
