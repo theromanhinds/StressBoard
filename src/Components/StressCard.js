@@ -28,8 +28,8 @@ function StressCard({id,
           onChange={(e) => handleChange(e)}
           maxlength="60"
           rows={3} cols={20}
-          onFocus={() => handleFocus(id)}
-          onBlur={() => handleBlur(id)}>
+          onMouseEnter={() => handleFocus(id)}
+          onMouseLeave={() => handleBlur(id)}>
             {text}
             </textarea>
         </div>

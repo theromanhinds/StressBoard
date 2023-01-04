@@ -4,7 +4,7 @@ import './App.css';
 import StressBoard from './Pages/StressBoard';
 import SignedOut from './Pages/SignedOut';
 
-import { auth, provider } from './FirebaseConfig.js';
+import { auth, provider, db } from './FirebaseConfig.js';
 import { signInWithPopup } from 'firebase/auth';
 
 
@@ -16,6 +16,7 @@ function App() {
     signInWithPopup(auth, provider).then((result) => {
       setUser(result);
       localStorage.setItem("user", result);
+      localStorage.setItem("uid", result.user.uid);
     }).catch((error) => {
       console.log(error);
     })
