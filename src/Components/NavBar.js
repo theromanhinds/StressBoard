@@ -5,7 +5,7 @@ function NavBar({signOut, addCard}) {
 
   return (
     <div className='NavBarDiv'>
-      <button onClick={() => addCard()}>Add Stress</button>
+      <button className='AddButton' onClick={() => addCard()}>Add Stress</button>
       <img className='Logo' src="/StessBoardLogo.png" alt="StressBoard Logo"/>
       <button className='SignButton' onClick={() => signOut()}>Sign Out</button>
     </div>

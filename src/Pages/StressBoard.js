@@ -4,7 +4,7 @@ import StressCards from '../Components/StressCards';
 
 import { nanoid } from 'nanoid';
 import { db } from '../FirebaseConfig.js';
-import { doc, setDoc, updateDoc, deleteDoc } from 'firebase/firestore';
+import { query, doc, collection, setDoc, updateDoc, deleteDoc, getDocs } from 'firebase/firestore';
 
 import '../App.css';
 
@@ -15,9 +15,10 @@ function StressBoard({signOut}) {
   const [cards, setCards] = useState([]);
   const [currentUser, setCurrentUser] = useState('');
 
-  //GETS USER LOGIN FROM LOCAL STORAGE
+  // GETS USER LOGIN FROM LOCAL STORAGE
   useEffect(() => {
     setCurrentUser(localStorage.getItem("uid"));
+    getCards();
   }, []);
 
   //FOCUSES CARD TEXTAREA ON DOUBLE CLICK
@@ -31,8 +32,21 @@ function StressBoard({signOut}) {
     }))
   }
 
+  async function getCards() {
+    const docSnap = await getDocs(query(collection(db, "users", `${localStorage.getItem("uid")}`, "cards")));
+    let cards = [];
+    docSnap.forEach((doc) => {
+      cards.push(doc.data());
+    })
+    setCards(cards);
+  }
+
   //GENERATES NEW CARD AND ADDS TO FIRESTORE
   async function addCard() {
+
+    if (cards.length > 9){
+      return;
+    }
 
     const newCard = {
       id: nanoid(),
@@ -70,11 +84,13 @@ function StressBoard({signOut}) {
 
   //UPDATES FIRESTORE CARD DATA
   async function updateCard(cardID, cardText, cardCompletion){
-    await updateDoc(doc(db, "users", `${currentUser}`, "cards", `${cardID}`), {
-      id: cardID,
-      text: cardText,
-      completed: cardCompletion
-    })
+    if (cardID) {
+      await updateDoc(doc(db, "users", `${currentUser}`, "cards", `${cardID}`), {
+        id: cardID,
+        text: cardText,
+        completed: cardCompletion
+      })
+    }
   }
 
   //RESETS TYPING TO FALSE AFTER TEXTAREA BLUR
@@ -112,7 +128,7 @@ function StressBoard({signOut}) {
 
   //DELETES CARD FROM ARRAY AND FIRESTORE
   async function deleteCard(id) {
-    const filteredCards = cards.filter(card => card.id != id);
+    const filteredCards = cards.filter(card => card.id !== id);
     setCards(filteredCards);
 
     await deleteDoc(doc(db, "users", `${currentUser}`, "cards", `${id}`));
@@ -133,6 +149,8 @@ function StressBoard({signOut}) {
             deleteCard={deleteCard}/>
 
         </div>
+
+        
     </div>
   )
 }

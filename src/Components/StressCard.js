@@ -12,8 +12,8 @@ function StressCard({id, text, completed, typing, handleChange, handleBlur, enab
     }, [typing])
 
   return (
-      <Draggable 
-      positionOffset={{ x: '-50%', y: '-50%' }}
+      <Draggable bounds='parent'
+      // positionOffset={{ x: '-50%', y: '-50%' }}
       disabled = {typing ? true : false}
       >
         <div className='StressCard' 
@@ -25,7 +25,7 @@ function StressCard({id, text, completed, typing, handleChange, handleBlur, enab
             value={text}
             className='Input' 
             onChange={(e) => handleChange(e)}
-            maxlength="60"
+            maxLength="60"
             rows={4} cols={16}
             onFocus={(e)=>e.currentTarget.setSelectionRange(e.currentTarget.value.length, e.currentTarget.value.length)}
             onBlur={() => handleBlur(id)}

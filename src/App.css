@@ -7,9 +7,7 @@
 .Board {
   justify-content: center;
   align-items: center;
-  display: flexbox;
   flex-direction: column;
-
   width: 100vw;
   height: 100vh;
   background-color: #EBE7DB;
@@ -26,8 +24,6 @@
   max-height: 88vh;
   max-width: 100vw;
   margin: 0;
-
-  
 }
 
 .StressCardsRange {
@@ -40,7 +36,8 @@
   justify-content: center;
   align-items: center;
   background-color: #EFE3C0;
-  border-bottom: 3px solid #000000;
+  border: 4px solid #000000;
+  border-radius: 20px;
 }
 
 .CardRange {
@@ -63,7 +60,6 @@
   border-color: #000000;
 
   background-color: #FFB512;
-  z-index: 0;
 
   display: flex;
   align-items: center;
@@ -112,20 +108,66 @@
 
 .NavBarDiv {
   top: 0;
-  height: 12vh;
+  height: 12%;
   display: flex;
   background-color: #EBE7DB;
   text-align: center;
   justify-content: space-around;
-  border-bottom: 3px solid #000000;
+  align-items: center;
+  border-bottom: 4px solid #000000;
+}
+
+.Logo {
+  width: 20em;
 }
 
 .SignButton {
-  padding: 30px;
+  padding: 1% 1.75%;
 
-  border-style: solid;
+  border: 0.2em solid;
   border-radius: 10px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.500);
+  
+  font-size: 16px;
+  font-weight: 700;
 
-  background-color: rgb(253, 23, 203);
+  background-color: #EF476F;
+}
 
+.AddButton {
+  padding: 1% 1.75%;
+
+  border: 0.2em solid;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.500);
+  
+  font-size: 16px;
+  font-weight: 700;
+
+  background-color: #1B9AAB;
+}
+
+.SignButton:hover {
+  font-size: 18px;
+}
+
+.AddButton:hover {
+  font-size: 18px;
+}
+
+.Deadline {
+  position: absolute;
+  width: 14em;
+  z-index: 20;
+  top: -4em;
+  right: 0%;
+}
+
+.Importance {
+  position: absolute;
+  width: 5em;
+  z-index: 20;
+  bottom: 0%;
+  left: -4em;
+  
 }

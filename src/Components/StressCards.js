@@ -8,8 +8,12 @@ function StressCards({cards, handleChange, handleBlur, enableTyping, completeCar
   return (
     <div className='StressCardsRange'>
 
+      <img className='Deadline' src="/Deadline.png" alt="Deadline"/>
+      <img  className='Importance' src="/Importance.png" alt="Importance"/>
+
       {cards.map((card) => (
-        <StressCard text={card.text} 
+        <StressCard text={card.text}
+        key={card.id} 
         id={card.id}
         completed={card.completed}
         typing={card.typing}
