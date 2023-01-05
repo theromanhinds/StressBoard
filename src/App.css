@@ -191,3 +191,39 @@
   width: 100%;
   border-bottom: 3px dashed black;
 }
+
+.SignedOut {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  background-color: #f6c634bd;
+}
+
+.SplashLogo {
+  width: 60%;
+}
+.SplashHeader {
+  width: 80%;
+  text-align: center;
+}
+
+.SignInButton {
+  padding: 1% 1.75%;
+
+  border: 0.2em solid;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.500);
+  
+  font-size: 16px;
+  font-weight: 700;
+
+  background-color: #EF476F;
+}
+
+.SignInButton:hover {
+  font-size: 18px;
+}
