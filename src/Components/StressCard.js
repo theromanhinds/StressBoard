@@ -18,7 +18,7 @@ function StressCard({id, text, completed, typing, handleChange, handleBlur, enab
       >
         <div className='StressCard' 
           onDoubleClick={() => enableTyping(id)}
-          style={{backgroundColor: completed ? 'lightGreen' : '',
+          style={{backgroundColor: completed ? '#5ED530' : '',
           color: completed ? 'white' : ''}}>
 
           <textarea ref={ref}
@@ -31,8 +31,8 @@ function StressCard({id, text, completed, typing, handleChange, handleBlur, enab
             onBlur={() => handleBlur(id)}
             disabled={typing ? false : true}></textarea>
 
-            <button className='DeleteButton' onClick={() => deleteCard(id)}>❌</button>
-            <button className='CompleteButton' onClick={() => completeCard(id)}>✅</button>
+            <button className='DeleteButton' onClick={() => deleteCard(id)}></button>
+            <button className='CompleteButton' onClick={() => completeCard(id)}></button>
 
         </div>
       </Draggable>

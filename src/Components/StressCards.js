@@ -10,6 +10,8 @@ function StressCards({cards, handleChange, handleBlur, enableTyping, completeCar
 
       <img className='Deadline' src="/Deadline.png" alt="Deadline"/>
       <img  className='Importance' src="/Importance.png" alt="Importance"/>
+      <div className='Vertical'></div>
+      <div className='Horizontal'></div>
 
       {cards.map((card) => (
         <StressCard text={card.text}
