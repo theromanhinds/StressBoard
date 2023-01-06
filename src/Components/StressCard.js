@@ -33,6 +33,7 @@ function StressCard({id, text, completed, typing, handleChange, handleBlur, enab
       disabled = {typing ? true : false}>
         
         <div className='StressCard' 
+          onClick={(e) => checkforDoubleClick(e, id)}
           style={{backgroundColor: completed ? '#5ED530' : '',
           color: completed ? 'white' : ''}}>
 
@@ -44,8 +45,7 @@ function StressCard({id, text, completed, typing, handleChange, handleBlur, enab
             rows={4} cols={16}
             onFocus={(e)=>e.currentTarget.setSelectionRange(e.currentTarget.value.length, e.currentTarget.value.length)}
             onBlur={() => handleBlur(id)}
-            disabled={typing ? false : true}
-            onClick={(e) => checkforDoubleClick(e, id)}></textarea>
+            disabled={typing ? false : true}></textarea>
 
             <button className='DeleteButton' onClick={() => deleteCard(id)}></button>
             <button className='CompleteButton' onClick={() => completeCard(id)}></button>
