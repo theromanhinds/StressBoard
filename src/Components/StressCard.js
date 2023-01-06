@@ -19,6 +19,7 @@ function StressCard({id, text, completed, typing, handleChange, handleBlur, enab
       setLastClick(0);
       clearTimeout(waitingClick);
       setWaitingClick(null);
+      if (e.type === 'touchstart' && e.cancelable) e.preventDefault();
       enableTyping(id);
     } else {
       setLastClick(e.timeStamp);
