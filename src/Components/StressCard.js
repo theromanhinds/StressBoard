@@ -24,7 +24,7 @@ function StressCard({id, text, completed, typing, handleChange, handleBlur, enab
       setLastClick(e.timeStamp);
       setWaitingClick(setTimeout(()=>{
       setWaitingClick(null);
-      }, 251))
+      }, 301))
     }
   }
 
