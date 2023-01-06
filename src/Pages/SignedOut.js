@@ -1,7 +1,7 @@
 import React from 'react';
 
 function SignedOut({signInWithGoogle}) {
-  
+
   return (
     <div className='SignedOut'>
         <img className='SplashLogo' src="/StessBoardLogo.png" alt="StressBoard Logo"/>
