@@ -131,29 +131,28 @@
   width: 20em;
 }
 
-@media only screen and (max-width: 768px) {
+@media (max-width: 768px) {
   /* For mobile phones: */
   .Logo {
     width: 14em;
   }
   .SignOutButton {
-    padding: 0.75% 1.5%;
-    font-size: 14px;
+    font-size: 12px !important;
     font-weight: 500;
   }
 
   .SignOutButton:hover {
-    font-size: 15px;
+    font-size: 13px !important;
   }
 
   .AddButton {
     padding: 0.75% 1.5%;
-    font-size: 14px;
+    font-size: 12px !important;
     font-weight: 500;
   }
   
   .AddButton:hover {
-    font-size: 15px;
+    font-size: 13px !important;
   }
 }
 
