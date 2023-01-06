@@ -1,23 +1,39 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import Draggable from 'react-draggable';
 
 import '../App.css';
 
 function StressCard({id, text, completed, typing, handleChange, handleBlur, enableTyping, completeCard, deleteCard}) {
 
-    const ref = useRef();
+  const ref = useRef();
 
-    useEffect(() => {
-      if (typing && ref.current) ref.current.focus();
-    }, [typing])
+  useEffect(() => {
+    if (typing && ref.current) ref.current.focus();
+  }, [typing])
+
+  const [waitingClick, setWaitingClick] = useState(null);
+  const [lastClick, setLastClick] = useState(0);
+
+  function checkforDoubleClick(e, id) {
+    if(lastClick&&e.timeStamp - lastClick < 250 && waitingClick) {
+      setLastClick(0);
+      clearTimeout(waitingClick);
+      setWaitingClick(null);
+      enableTyping(id);
+    } else {
+      setLastClick(e.timeStamp);
+      setWaitingClick(setTimeout(()=>{
+      setWaitingClick(null);
+      }, 251))
+    }
+  }
 
   return (
       <Draggable bounds='parent'
-      // positionOffset={{ x: '-50%', y: '-50%' }}
-      disabled = {typing ? true : false}
-      >
+      disabled = {typing ? true : false}>
+        
         <div className='StressCard' 
-          
+          onClick={(e) => checkforDoubleClick(e, id)}
           style={{backgroundColor: completed ? '#5ED530' : '',
           color: completed ? 'white' : ''}}>
 
@@ -29,9 +45,7 @@ function StressCard({id, text, completed, typing, handleChange, handleBlur, enab
             rows={4} cols={16}
             onFocus={(e)=>e.currentTarget.setSelectionRange(e.currentTarget.value.length, e.currentTarget.value.length)}
             onBlur={() => handleBlur(id)}
-            disabled={typing ? false : true}
-            onDoubleClick={() => enableTyping(id)}>
-            </textarea>
+            disabled={typing ? false : true}></textarea>
 
             <button className='DeleteButton' onClick={() => deleteCard(id)}></button>
             <button className='CompleteButton' onClick={() => completeCard(id)}></button>
