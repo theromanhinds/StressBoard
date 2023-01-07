@@ -31,15 +31,18 @@ function StressCard({id, text, completed, typing, handleChange, handleBlur, enab
       setWaitingClick(setTimeout(()=>{
       setWaitingClick(null);
       }, 301))
+      console.log("click");
     }
   }
 
   function handleDoubleClick(id) {
+    console.log("double clicked");
     setReading(false);
     enableTyping(id);
   }
 
   function resetCard(id) {
+    console.log("blurring");
     setReading(true);
     handleBlur(id);
   }
