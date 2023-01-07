@@ -12,7 +12,8 @@ function StressCard({id, text, completed, typing, handleChange, handleBlur, enab
     if (typing && ref.current) {
       console.log("effecting");
       console.log(ref.current.value);
-      ref.current.setSelectionRange(ref.current.value.length, ref.current.value.length);
+      ref.current.select();
+      // ref.current.setSelectionRange(ref.current.value.length, ref.current.value.length);
     }
   }, [typing])
 
