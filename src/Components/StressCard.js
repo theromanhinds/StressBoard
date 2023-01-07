@@ -49,7 +49,8 @@ function StressCard({id, text, completed, typing, handleChange, handleBlur, enab
 
   return (
       <Draggable bounds='parent'
-      disabled = {typing ? true : false}>
+      disabled = {typing ? true : false}
+      cancel=".Input">
         
         <div className='StressCard' 
           style={{backgroundColor: completed ? '#5ED530' : '',
