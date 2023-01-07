@@ -53,12 +53,12 @@ function StressCard({id, text, completed, typing, handleChange, handleBlur, enab
         
         <div className='StressCard' 
           style={{backgroundColor: completed ? '#5ED530' : '',
-          color: completed ? 'white' : ''}}
-          onDragEnd={(e) => checkforDoubleClick(e, id)}>
+          color: completed ? 'white' : ''}}>
 
           <textarea ref={ref}
             value={text}
             className='Input'
+            onDragEnd={(e) => checkforDoubleClick(e, id)}
             onClick={(e) => checkforDoubleClick(e, id)}
             onChange={(e) => handleChange(e)}
             maxLength="60"
