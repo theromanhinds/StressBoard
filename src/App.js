@@ -4,14 +4,20 @@ import './App.css';
 import StressBoard from './Pages/StressBoard';
 import SignedOut from './Pages/SignedOut';
 
-import { auth, provider, db } from './FirebaseConfig.js';
+import { auth, provider } from './FirebaseConfig.js';
 import { signInWithPopup } from 'firebase/auth';
-
 
 function App() {
 
+  // holds user object collected from Firebase authorization
   const [user, setUser] = useState('');
 
+  // gets user object from local storage on page reload
+  useEffect(() => {
+    setUser(localStorage.getItem("user"));
+  }, [])
+
+  // displays Google sign in pop-up and collects user info
   function signInWithGoogle() {
     signInWithPopup(auth, provider).then((result) => {
       setUser(result);
@@ -22,15 +28,13 @@ function App() {
     })
   }
 
-  useEffect(() => {
-    setUser(localStorage.getItem("user"));
-  })
-
+  // clears user object from local storage and triggers signedOut page render
   function signOut() {
     localStorage.clear();
     window.location.reload();
   }
 
+  // renders signedOut page if user null, else StressBoard
   return (
     <div className="App">
       {user ? <StressBoard signOut={signOut}/> : <SignedOut signInWithGoogle={signInWithGoogle}/>}

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import { React, useState, useRef, useEffect } from 'react'
 import Draggable from 'react-draggable';
 
 import '../App.css';
@@ -7,13 +7,16 @@ function StressCard({id, text, completed, typing, handleChange, handleBlur, enab
 
   const ref = useRef();
 
+  // focuses on card textarea when typing set to true
   useEffect(() => {
     if (typing && ref.current) ref.current.focus();
   }, [typing])
 
+  // state handler for checkforDoubleClick
   const [waitingClick, setWaitingClick] = useState(null);
   const [lastClick, setLastClick] = useState(0);
 
+  // calls enableTyping on double click
   function checkforDoubleClick(e, id) {
     if(lastClick&&e.timeStamp - lastClick < 250 && waitingClick) {
       setLastClick(0);
