@@ -9,12 +9,15 @@ function StressCard({id, text, completed, typing, handleChange, handleBlur, enab
 
   // focuses on card textarea when typing set to true
   useEffect(() => {
-    if (typing && ref.current) ref.current.focus();
+    if (typing && ref.current) {
+      ref.current.setSelectionRange(ref.current.value.length, ref.current.value.length);
+    }
   }, [typing])
 
   // state handler for checkforDoubleClick
   const [waitingClick, setWaitingClick] = useState(null);
   const [lastClick, setLastClick] = useState(0);
+  const [reading, setReading] = useState(true);
 
   // calls enableTyping on double click
   function checkforDoubleClick(e, id) {
@@ -22,7 +25,7 @@ function StressCard({id, text, completed, typing, handleChange, handleBlur, enab
       setLastClick(0);
       clearTimeout(waitingClick);
       setWaitingClick(null);
-      enableTyping(id);
+      handleDoubleClick(id);
     } else {
       setLastClick(e.timeStamp);
       setWaitingClick(setTimeout(()=>{
@@ -31,24 +34,33 @@ function StressCard({id, text, completed, typing, handleChange, handleBlur, enab
     }
   }
 
+  function handleDoubleClick(id) {
+    setReading(false);
+    enableTyping(id);
+  }
+
+  function resetCard(id) {
+    setReading(true);
+    handleBlur(id);
+  }
+
   return (
       <Draggable bounds='parent'
       disabled = {typing ? true : false}>
         
         <div className='StressCard' 
-          onClick={(e) => checkforDoubleClick(e, id)}
           style={{backgroundColor: completed ? '#5ED530' : '',
           color: completed ? 'white' : ''}}>
 
           <textarea ref={ref}
             value={text}
-            className='Input' 
+            className='Input'
+            onClick={(e) => checkforDoubleClick(e, id)}
             onChange={(e) => handleChange(e)}
             maxLength="60"
             rows={4} cols={16}
-            onFocus={(e)=>e.currentTarget.setSelectionRange(e.currentTarget.value.length, e.currentTarget.value.length)}
-            onBlur={() => handleBlur(id)}
-            disabled={typing ? false : true}></textarea>
+            onBlur={() => resetCard(id)}
+            readOnly={reading ? true : false}></textarea>
 
             <button className='DeleteButton' onClick={() => deleteCard(id)}></button>
             <button className='CompleteButton' onClick={() => completeCard(id)}></button>
