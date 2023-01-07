@@ -10,6 +10,7 @@ function StressCard({id, text, completed, typing, handleChange, handleBlur, enab
   // focuses on card textarea when typing set to true
   useEffect(() => {
     if (typing && ref.current) {
+      console.log("effecting");
       ref.current.setSelectionRange(ref.current.value.length, ref.current.value.length);
     }
   }, [typing])
