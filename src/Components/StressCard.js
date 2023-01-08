@@ -10,7 +10,8 @@ function StressCard({id, text, completed, typing, handleChange, handleBlur, enab
   // focuses on card textarea when typing set to true
   useEffect(() => {
     if (typing && ref.current) {
-      ref.current.setSelectionRange(ref.current.value.length, ref.current.value.length);
+      ref.current.select();
+      // ref.current.setSelectionRange(ref.current.value.length, ref.current.value.length);
     }
   }, [typing])
 
@@ -61,11 +62,16 @@ function StressCard({id, text, completed, typing, handleChange, handleBlur, enab
             maxLength="60"
             rows={4} cols={16}
             onBlur={() => resetCard(id)}
-            readOnly={reading ? true : false}></textarea>
+            readOnly={reading ? true : false}
+            style={{
+              cursor: reading ? 'default' : ''
+            }}
+            >
+            </textarea>
 
             <div className='CardHandle'>
-              <button className='DeleteButton' onClick={() => deleteCard(id)}></button>
-              <button className='CompleteButton' onClick={() => completeCard(id)}></button>
+              <button className='DeleteButton' onTouchEnd={() => deleteCard(id)} onClick={() => deleteCard(id)}></button>
+              <button className='CompleteButton' onTouchEnd={() => completeCard(id)} onClick={() => completeCard(id)}></button>
             </div>
 
         </div>

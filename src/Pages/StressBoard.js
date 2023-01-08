@@ -13,7 +13,7 @@ import '../App.css';
 function StressBoard({signOut}) {
 
   // holds card objects list
-  const [cards, setCards] = useState([]);
+  const [cards, setCards] = useState('');
 
   // holds user id string
   const [currentUser, setCurrentUser] = useState('');
@@ -29,11 +29,11 @@ function StressBoard({signOut}) {
     // [!!!] getDocs reads currentUser as null after useEffect
     // while later functions will accept currentUser [!!!]
     const docSnap = await getDocs(query(collection(db, "users", `${localStorage.getItem("uid")}`, "cards")));
-    let cards = [];
+    let results = [];
     docSnap.forEach((doc) => {
-      cards.push(doc.data());
+      results.push(doc.data());
     })
-    setCards(cards);
+    setCards(results);
   }
 
   // sets typing state to true for selected card, false for others
@@ -143,17 +143,17 @@ function StressBoard({signOut}) {
   return (
     <div className='Board'>
 
-        <NavBar addCard={addCard} signOut={signOut}/>
+        <NavBar totalCards={cards.length} addCard={addCard} signOut={signOut}/>
 
         <div className='BoardAreaDiv'>
 
-          <StressCards cards={cards}
+        {cards ? <StressCards cards={cards}
             handleChange={handleChange}
             handleBlur={handleBlur}
             enableTyping={enableTyping}
             completeCard={completeCard}
-            deleteCard={deleteCard}/>
-
+            deleteCard={deleteCard}/> : <h1>LOADING</h1>}
+          
         </div>
 
         
