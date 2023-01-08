@@ -3,12 +3,14 @@
   max-height: 100vh;
 }
 
+/* hides overflow scrolling for desktop */
 @media (min-width: 768px) {
   .App {
     overflow: hidden;
   }
 }
 
+/* BOARD */
 .Board {
   justify-content: center;
   align-items: center;
@@ -40,154 +42,9 @@
   position: relative;
   justify-content: center;
   align-items: center;
-  /* background-color: #EFE3C0; */
   background-color: #f6c634bd;
   border: 4px solid #000000;
   border-radius: 20px;
-}
-
-.CardRange {
-  position: absolute;
-  height: 75vh;
-  width: 75vw;
-}
-
-.StressCard {
-  width: 10%;
-  height: 6%;
-  position: absolute;
-  top: 50%;
-  left: 50%; 
-  transform: translate(-50%, -50%);
-  padding: 30px;
-
-  border-style: solid;
-  border-radius: 15px;
-  border-color: #000000;
-
-  background-color: #FFB512;
-
-  display: flex;
-  align-items: center;
-}
-
-.Input {
-  resize: none;
-  position: fixed;
-  left: 2.5px;
-  top: 2.5px;
-  overflow: hidden;
-  background-color: transparent;
-  border: none;
-  outline: none;
-  font-size: 16px;
-  width: 80%;
-  height: 90%;
-}
-
-.Input:disabled {
-  color: #000000;
-}
-
-.DeleteButton {
-  position: absolute;
-  right: 2.5%;
-  top: 2.5%;
-  height: 15px;
-  width: 15px;
-  border-radius: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #EF476F;
-}
-
-.CompleteButton {
-  position: absolute;
-  right: 2.5%;
-  bottom: 2.5%;
-  height: 15px;
-  width: 15px;
-  border-radius: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* background-color: rgb(38, 255, 0); */
-  background-color: rgb(53, 227, 22);
-}
-
-.NavBarDiv {
-  top: 0;
-  height: 12%;
-  display: flex;
-  background-color: #f6c634bd;
-  text-align: center;
-  justify-content: space-around;
-  align-items: center;
-  border-bottom: 4px solid #000000;
-}
-
-.Logo {
-  width: 20em;
-}
-
-@media (max-width: 768px) {
-  /* For mobile phones: */
-  .Logo {
-    width: 14em;
-  }
-  .SignOutButton {
-    font-size: 12px !important;
-    font-weight: 500;
-  }
-
-  .SignOutButton:hover {
-    font-size: 13px !important;
-  }
-
-  .AddButton {
-    padding: 0.75% 1.5%;
-    font-size: 12px !important;
-    font-weight: 500;
-  }
-  
-  .AddButton:hover {
-    font-size: 13px !important;
-  }
-}
-
-.SignOutButton {
-  padding: 1% 1.75%;
-
-  border: 0.2em solid;
-  border-radius: 10px;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.500);
-  
-  font-size: 16px;
-  font-weight: 700;
-
-  background-color: #EF476F;
-}
-
-.AddButton {
-  padding: 1% 1.75%;
-
-  border: 0.2em solid;
-  border-radius: 10px;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.500);
-  
-  font-size: 16px;
-  font-weight: 700;
-
-  background-color: #1B9AAB;
-}
-
-.SignOutButton:hover {
-  font-size: 18px;
-}
-
-.AddButton:hover {
-  font-size: 18px;
 }
 
 .Deadline {
@@ -221,6 +78,161 @@
   border-bottom: 3px dashed black;
 }
 
+/* CARDS */
+.StressCard {
+  width: 10%;
+  height: 6%;
+  position: absolute;
+  top: 50%;
+  left: 50%; 
+  transform: translate(-50%, -50%);
+  padding: 30px;
+
+  border-style: solid;
+  border-color: #000000;
+  border-radius: 15px;
+
+  background-color: #FFB512;
+
+  display: flex;
+  align-items: center;
+}
+
+.Input {
+  resize: none;
+  position: absolute;
+  left: 2.5px;
+  top: 2.5px;
+  overflow: hidden;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  width: 80%;
+  height: 90%;
+}
+
+.CardHandle {
+  position: absolute;
+  right: 0px;
+  height: 100%;
+  width: 15%;
+  
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  
+  display: flex;
+  flex-direction: column;
+}
+
+.DeleteButton {
+  right: 2.5%;
+  top: 2.5%;
+  height: 100%;
+  width: 100%;
+  border-top-right-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #EF476F;
+}
+
+.CompleteButton {
+  right: 2.5%;
+  bottom: 2.5%;
+  height: 100%;
+  width: 100%;
+  border-bottom-right-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(53, 227, 22);
+}
+
+/* hides overflow scrolling for desktop */
+@media (min-width: 768px) {
+  .CardHandle {
+    width: 10%;
+  }
+}
+
+/* NAVBAR */
+.NavBarDiv {
+  top: 0;
+  height: 12%;
+  display: flex;
+  background-color: #f6c634bd;
+  text-align: center;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: 4px solid #000000;
+}
+
+.Logo {
+  width: 20em;
+}
+
+.AddButton {
+  padding: 1% 1.75%;
+
+  border: 0.2em solid;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.500);
+  
+  font-size: 16px;
+  font-weight: 700;
+
+  background-color: #1B9AAB;
+}
+
+.SignOutButton {
+  padding: 1% 1.75%;
+
+  border: 0.2em solid;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.500);
+  
+  font-size: 16px;
+  font-weight: 700;
+
+  background-color: #EF476F;
+}
+
+.SignOutButton:hover {
+  font-size: 18px;
+}
+
+.AddButton:hover {
+  font-size: 18px;
+}
+
+/* resizes navbar elements for mobile */
+@media (max-width: 768px) {
+  /* For mobile phones: */
+  .Logo {
+    width: 14em;
+  }
+  .SignOutButton {
+    font-size: 12px !important;
+    font-weight: 500;
+  }
+
+  .SignOutButton:hover {
+    font-size: 13px !important;
+  }
+
+  .AddButton {
+    padding: 0.75% 1.5%;
+    font-size: 12px !important;
+    font-weight: 500;
+  }
+  
+  .AddButton:hover {
+    font-size: 13px !important;
+  }
+}
+
+/* SIGN IN */
 .SignedOut {
   display: flex;
   flex-direction: column;
@@ -234,13 +246,6 @@
 
 .SplashLogo {
   width: 60%;
-}
-
-@media only screen and (max-width: 768px) {
-  /* For mobile phones: */
-  .SplashLogo {
-    width: 80%;
-  }
 }
 
 .SplashHeader {
@@ -265,3 +270,11 @@
 .SignInButton:hover {
   font-size: 18px;
 }
+
+/* resizes sign in page for mobile */
+@media only screen and (max-width: 768px) {
+  .SplashLogo {
+    width: 80%;
+  }
+}
+

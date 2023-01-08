@@ -10,10 +10,7 @@ function StressCard({id, text, completed, typing, handleChange, handleBlur, enab
   // focuses on card textarea when typing set to true
   useEffect(() => {
     if (typing && ref.current) {
-      console.log("effecting");
-      console.log(ref.current.value);
-      ref.current.select();
-      // ref.current.setSelectionRange(ref.current.value.length, ref.current.value.length);
+      ref.current.setSelectionRange(ref.current.value.length, ref.current.value.length);
     }
   }, [typing])
 
@@ -34,18 +31,15 @@ function StressCard({id, text, completed, typing, handleChange, handleBlur, enab
       setWaitingClick(setTimeout(()=>{
       setWaitingClick(null);
       }, 301))
-      console.log("click");
     }
   }
 
   function handleDoubleClick(id) {
-    console.log("double clicked");
     setReading(false);
     enableTyping(id);
   }
 
   function resetCard(id) {
-    console.log("blurring");
     setReading(true);
     handleBlur(id);
   }
@@ -69,8 +63,10 @@ function StressCard({id, text, completed, typing, handleChange, handleBlur, enab
             onBlur={() => resetCard(id)}
             readOnly={reading ? true : false}></textarea>
 
-            <button className='DeleteButton' onClick={() => deleteCard(id)}></button>
-            <button className='CompleteButton' onClick={() => completeCard(id)}></button>
+            <div className='CardHandle'>
+              <button className='DeleteButton' onClick={() => deleteCard(id)}></button>
+              <button className='CompleteButton' onClick={() => completeCard(id)}></button>
+            </div>
 
         </div>
       </Draggable>
