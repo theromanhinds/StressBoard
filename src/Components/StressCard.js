@@ -3,7 +3,7 @@ import Draggable from 'react-draggable';
 
 import '../App.css';
 
-function StressCard({id, text, completed, typing, handleChange, handleBlur, enableTyping, completeCard, deleteCard}) {
+function StressCard({id, text, completed, typing, handleTyping, handleBlur, enableTyping, completeCard, deleteCard, x, y, handlePosition}) {
 
   const ref = useRef();
 
@@ -47,7 +47,9 @@ function StressCard({id, text, completed, typing, handleChange, handleBlur, enab
 
   return (
       <Draggable bounds='parent'
-      disabled = {typing ? true : false}>
+      disabled={typing ? true : false}
+      defaultPosition={{x: x, y: y}}
+      onStop={(e, data) => handlePosition(e, data, id)}>
         
         <div className='StressCard' 
           style={{backgroundColor: completed ? '#5ED530' : '',
@@ -58,7 +60,7 @@ function StressCard({id, text, completed, typing, handleChange, handleBlur, enab
             className='Input'
             onTouchEnd={(e) => checkforDoubleClick(e, id)}
             onClick={(e) => checkforDoubleClick(e, id)}
-            onChange={(e) => handleChange(e)}
+            onChange={(e) => handleTyping(e)}
             maxLength="60"
             rows={4} cols={16}
             onBlur={() => resetCard(id)}

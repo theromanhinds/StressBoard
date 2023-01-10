@@ -3,7 +3,7 @@ import StressCard from './StressCard'
 
 import '../App.css'
 
-function StressCards({cards, handleChange, handleBlur, enableTyping, completeCard, deleteCard}) {
+function StressCards({cards, handleTyping, handleBlur, enableTyping, completeCard, deleteCard, handlePosition}) {
 
   return (
     <div className='StressCardsRange'>
@@ -19,7 +19,10 @@ function StressCards({cards, handleChange, handleBlur, enableTyping, completeCar
         id={card.id}
         completed={card.completed}
         typing={card.typing}
-        handleChange={handleChange}
+        x={card.x}
+        y={card.y}
+        handlePosition={handlePosition}
+        handleTyping={handleTyping}
         handleBlur={handleBlur}
         enableTyping = {enableTyping}
         completeCard={completeCard}

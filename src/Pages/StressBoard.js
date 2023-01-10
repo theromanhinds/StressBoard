@@ -59,6 +59,8 @@ function StressBoard({signOut}) {
       text: "I'm a new stress.",
       completed: false,
       typing: true,
+      x: 0,
+      y: 0
     }
 
     const newCards = [...cards, newCard];
@@ -67,25 +69,52 @@ function StressBoard({signOut}) {
     await setDoc(doc(db, "users", `${currentUser}`,"cards", `${newCard.id}`), {
       id: newCard.id,
       text: newCard.text,
-      completed: newCard.completed
+      completed: newCard.completed,
+      x: newCard.x,
+      y: newCard.y
     });
+  }
+
+  function handlePosition(e, data, id) {
+    let cardID = "";
+    let cardText = "";
+    let cardCompletion = false;
+    let cardX = 0;
+    let cardY = 0;
+    setCards(cards.map(card => {
+      if (card.id === id) {
+        cardID = card.id;
+        cardText = card.text;
+        cardCompletion = card.completed;
+        cardX = data.x;
+        cardY = data.y;
+        return {...card, x: data.x, y: data.y}
+      } else {
+        return card;
+      }
+    }))
+    updateCard(cardID, cardText, cardCompletion, cardX, cardY);
   }
   
   // handles text change for selected card, calls updateCard
-  function handleChange(e) {
+  function handleTyping(e) {
     let cardID = "";
     let cardText = e.target.value;
     let cardCompletion = false;
+    let cardX = 0;
+    let cardY = 0;
     setCards(cards.map(card => {
       if (card.typing === true) {
         cardID = card.id;
         cardCompletion = card.completed;
+        cardX = card.x;
+        cardY = card.y;
         return {...card, text: e.target.value}
       } else {
         return card;
       }
     }))
-    updateCard(cardID, cardText, cardCompletion);
+    updateCard(cardID, cardText, cardCompletion, cardX, cardY);
   }
 
   // handles complete toggle for clicked Card, calls update Card
@@ -93,11 +122,15 @@ function StressBoard({signOut}) {
     let cardID = "";
     let cardText = "";
     let cardCompletion = false;
+    let cardX = 0;
+    let cardY = 0;
     setCards(cards.map(card => {
       if (card.id === id) {
         cardID = card.id;
         cardText = card.text;
         cardCompletion = true;
+        cardX = card.x;
+        cardY = card.y
         if (card.completed === true){
           cardCompletion = false;
           return {...card, completed: false}
@@ -107,16 +140,18 @@ function StressBoard({signOut}) {
         return card;
       }
     }))
-    updateCard(cardID, cardText, cardCompletion);
+    updateCard(cardID, cardText, cardCompletion, cardX, cardY);
   };
 
   // updates database for selected card
-  async function updateCard(cardID, cardText, cardCompletion){
+  async function updateCard(cardID, cardText, cardCompletion, cardX, cardY){
     if (cardID) {
       await updateDoc(doc(db, "users", `${currentUser}`, "cards", `${cardID}`), {
         id: cardID,
         text: cardText,
-        completed: cardCompletion
+        completed: cardCompletion,
+        x: cardX,
+        y: cardY
       })
     }
   }
@@ -148,7 +183,8 @@ function StressBoard({signOut}) {
         <div className='BoardAreaDiv'>
 
         {cards ? <StressCards cards={cards}
-            handleChange={handleChange}
+            handleTyping={handleTyping}
+            handlePosition={handlePosition}
             handleBlur={handleBlur}
             enableTyping={enableTyping}
             completeCard={completeCard}
